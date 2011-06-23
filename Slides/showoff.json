@@ -1,0 +1,4 @@
+{ "name": "ASP.NET MVC Basics", 
+	"sections": [ {"section":"intro"},
+	 {"section":"design"} ,
+	 {"section":"wrapup"} ]}
