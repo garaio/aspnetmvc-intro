@@ -34,6 +34,8 @@
 		} %>
 	</table>
 
+	<%=Html.ActionLink("Kontakt hinzufügen...", "Create") %>
+
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$(".ajaxPopupLink").fancybox();

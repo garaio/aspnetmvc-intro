@@ -100,6 +100,7 @@
     <Content Include="Scripts\fancybox\jquery.fancybox-1.3.4.js" />
     <Content Include="Scripts\fancybox\jquery.fancybox-1.3.4.pack.js" />
     <Content Include="Scripts\fancybox\jquery.mousewheel-3.0.4.pack.js" />
+    <Content Include="Views\Kontakte\Create.aspx" />
     <Content Include="Views\Kontakte\Details.aspx" />
     <Content Include="Views\Kontakte\Index.aspx" />
     <Content Include="Web.config" />

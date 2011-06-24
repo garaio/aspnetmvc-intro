@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using MvcSampleApp1.Helpers;
+using MvcSampleApp1.Models;
 
 namespace MvcSampleApp1.Controllers
 {
@@ -35,21 +36,18 @@ namespace MvcSampleApp1.Controllers
         // POST: /Kontakte/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Kontakt kontakt)
         {
-            try
-            {
-                // TODO: Add insert logic here
+        	if (!ModelState.IsValid)
+        	{
+        		return View();
+        	}
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+        	KontaktStore.AddKontakt(kontakt);
+        	return RedirectToAction("Index");
         }
-        
-        //
+
+    	//
         // GET: /Kontakte/Edit/5
  
         public ActionResult Edit(int id)
