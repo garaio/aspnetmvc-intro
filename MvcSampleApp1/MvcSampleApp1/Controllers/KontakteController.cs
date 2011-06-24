@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,41 +8,39 @@ using MvcSampleApp1.Models;
 
 namespace MvcSampleApp1.Controllers
 {
-    public class KontakteController : Controller
+	public class KontakteController : Controller
     {
-        public ActionResult Index()
+		private readonly IKontaktStore _kontaktStore;
+
+    	public KontakteController(IKontaktStore kontaktStore)
+    	{
+    		_kontaktStore = kontaktStore;
+    	}
+
+    	public ActionResult Index(KontaktIndexCommand command)
         {
-            return View(KontaktStore.GetKontakte());
+            return View(command.Execute());
         }
 
-        //
-        // GET: /Kontakte/Details/5
-
-        public ActionResult Details(int id)
+        public ActionResult Details(KontaktDetailsCommand command)
         {
-            return View(KontaktStore.GetKontakte().ElementAt(id));
+            return View(command.Execute());
         }
-
-        //
-        // GET: /Kontakte/Create
 
         public ActionResult Create()
         {
             return View();
         } 
 
-        //
-        // POST: /Kontakte/Create
-
         [HttpPost]
-        public ActionResult Create(Kontakt kontakt)
+        public ActionResult Create(KontaktCreateCommand command)
         {
         	if (!ModelState.IsValid)
         	{
         		return View();
         	}
 
-        	KontaktStore.AddKontakt(kontakt);
+        	command.Execute();
         	return RedirectToAction("Index");
         }
 
@@ -86,8 +83,8 @@ namespace MvcSampleApp1.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-			var zulöschen = KontaktStore.GetKontakte().ElementAt(id);
-			KontaktStore.RemoveKontakt(zulöschen);
+			var zulöschen = _kontaktStore.GetKontakte().ElementAt(id);
+			_kontaktStore.RemoveKontakt(zulöschen);
             return RedirectToAction("Index");
         }
     }

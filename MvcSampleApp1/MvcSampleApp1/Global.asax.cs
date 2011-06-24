@@ -8,6 +8,8 @@ using System.Web.Routing;
 using MvcSampleApp1.Helpers;
 using MvcSampleApp1.Models;
 
+using StructureMap;
+
 namespace MvcSampleApp1
 {
 	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -33,8 +35,14 @@ namespace MvcSampleApp1
 
 			RegisterRoutes(RouteTable.Routes);
 
-			KontaktStore.AddKontakt(new Kontakt { Vorname = "Leo", Name = "von Wyss", Strasse = "Laupenstr. 45", PLZ = "3000", Ort = "Bern", Land = "CH" });
-			KontaktStore.AddKontakt(new Kontakt { Vorname = "David", Name = "Bailey", Strasse = "Hardturmstr. 3", PLZ = "8005", Ort = "Zürich", Land = "CH" });
+			ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory());
+			ModelBinders.Binders.DefaultBinder = new StructureMapModelBinder();
+
+			KontaktStore kontaktStore = new KontaktStore();
+			ObjectFactory.Initialize(expression => expression.For<IKontaktStore>().Singleton().Use(kontaktStore));
+
+			kontaktStore.AddKontakt(new Kontakt { Vorname = "Leo", Name = "von Wyss", Strasse = "Laupenstr. 45", PLZ = "3000", Ort = "Bern", Land = "CH" });
+			kontaktStore.AddKontakt(new Kontakt { Vorname = "David", Name = "Bailey", Strasse = "Hardturmstr. 3", PLZ = "8005", Ort = "Zürich", Land = "CH" });
 		}
 	}
 }
