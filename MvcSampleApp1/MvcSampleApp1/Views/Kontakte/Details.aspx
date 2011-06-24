@@ -1,6 +1,4 @@
-<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<MvcSampleApp1.Models.Kontakt>" MasterPageFile="~/Views/Shared/Site.Master" %>
-<asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent">Details zum Kontakt</asp:Content>
-<asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
+<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<MvcSampleApp1.Models.Kontakt>" %>
 <table>
 <tr>
 <th>Name:</th>
@@ -27,4 +25,3 @@
 <td><%=Model.Land %></td>
 </tr>
 </table>
-</asp:Content>
