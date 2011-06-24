@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
+using MvcSampleApp1.Helpers;
+using MvcSampleApp1.Models;
+
 namespace MvcSampleApp1
 {
 	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -29,6 +32,9 @@ namespace MvcSampleApp1
 			AreaRegistration.RegisterAllAreas();
 
 			RegisterRoutes(RouteTable.Routes);
+
+			KontaktStore.AddKontakt(new Kontakt { Vorname = "Leo", Name = "von Wyss", Strasse = "Laupenstr. 45", PLZ = "3000", Ort = "Bern", Land = "CH" });
+			KontaktStore.AddKontakt(new Kontakt { Vorname = "David", Name = "Bailey", Strasse = "Hardturmstr. 3", PLZ = "8005", Ort = "Zürich", Land = "CH" });
 		}
 	}
 }
