@@ -28,6 +28,11 @@
 				<td><%=kontakt.Name %></td>
 				<td><%=kontakt.Ort %></td>
 				<td><%=Html.ActionLink("Details", "Details", new { id = index}, new { @class = "ajaxPopupLink"}) %></td>
+				<td><% using(Html.BeginForm("Delete", "Kontakte", new { id = index}))
+			{%>
+			<a href="#" class="deleteLink">Löschen</a>
+				<%
+			}%></td>
 				</tr>
 			  <%
 			index++;
@@ -39,6 +44,7 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$(".ajaxPopupLink").fancybox();
+			$(".deleteLink").bind("click", null, function () { if (confirm("Diesen Eintrag wirklich löschen?")) { $(this).parent("form").submit(); } return false; }); ;
 		});
 	</script>
 </asp:Content>
