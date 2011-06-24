@@ -20,7 +20,7 @@ namespace MvcSampleApp1.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            return View(KontaktStore.GetKontakte().ElementAt(id));
         }
 
         //

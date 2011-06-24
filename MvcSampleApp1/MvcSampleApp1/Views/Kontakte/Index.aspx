@@ -10,15 +10,20 @@
 	<tr>
 	<th>Name</th>
 	<th>Ort</th>
+	<th>Aktionen</th>
 	</tr>
-	<% foreach (var kontakt in Model)
+	<%
+		int index = 0;
+	 foreach (var kontakt in Model)
 {
   %>
 	<tr>
 	<td><%=kontakt.Name %></td>
 	<td><%=kontakt.Ort %></td>
+	<td><%=Html.ActionLink("Details", "Details", new { id = index}) %></td>
 	</tr>
   <%
+	index++;
 } %>
 	</table>
 </asp:Content>
