@@ -1,74 +1,57 @@
 !SLIDE 
-# Statelessness #
+# ASP.NET MVC Design #
 
 !SLIDE bullets incremental
-# Statelessness #
-* Basis-Design von HTTP
-* Jeder Request ist unabhängig
-* Jeder Request muss alle erforderlichen Informationen enthalten
+# Views ohne fachliche Logik #
+* Die Views enthalten keinen fachlichen Code
+* Die Views stellen nur "vorgekaute" Daten dar
+* Views respektieren SRP/DRY durch Partial Views, wo sinnvoll
 
 !SLIDE bullets incremental
-# Statelessness: Grenzen #
-* Viele Informationen gelten über zahlreiche Requests hinweg, z.B.
-* Login-Status
-* Warenkorb
-* Inhalt eines Wizards
+# Views typisieren #
+* Views können ein typisiertes Model entgegennehmen
+* Immer ViewPage<ModelType> verwenden
+* Das ermöglicht Intellisense und Compiler-Checks
 
 !SLIDE bullets incremental
-# Statelessness: Technik #
-* Das HTTP-Protokoll übermittelt bei jedem Request Informationen:
-* URL
-* Post-Daten (nur bei POSTs)
-* Cookies
-* Das gesamte State-Handling muss auf diesen Teilen aufbauen
+# Views: HTML Helper verwenden #
+* Html.LabelFor, Html.EditorFor, Html.ValidationMessageFor etc. helfen, DRY zu bleiben
+* Sauberes, einfaches HTML verwenden
+* Für wiederkehrende Aufgaben eigene HtmlHelper erstellen
+* Bedingungen etc. in HtmlHelper verpacken
 
 !SLIDE bullets incremental
-# State-Handling in ASP.NET MVC #
-* Url
-* Cookies
-* Session State (?)
-* Datenbank und andere Stores (?)
+# Skinny Controller #
+* Der Controller enthält keine fachliche Logik
+* Der Controller beschafft sich seine Abhängigkeiten nicht selber
+* Der Controller befasst sich nicht damit, *wie* die Daten beschafft werden
+* Der Controller befasst sich nicht damit, *wie* etwas dargestellt wird
 
 !SLIDE bullets incremental
-# Url #
-* Die Url kann in MVC frei definiert werden
-* Url-Elemente sind RouteData und können von einem Request zum nächten weitergegeben werden (z.B. Sprache)
-* Url ist Medium der Wahl für alles, was nicht zeitlich begrenzt oder security-relevant ist
-* Erlaubt Bookmarking eines bestimmten Zustands
+# Controller-Actions #
+* Actions sind Methoden
+* Actions ergeben immer ein Result
+* Actions können mit Filtern versehen werden (light-Version von AOP)
+* Actions sollten einem bestimmten http-Verb zugewiesen werden
 
 !SLIDE bullets incremental
-# POST-Daten #
-* Auch für grosse Datenmenge geeignet
-* Schaffen Probleme mit dem Back-Button im Browser
-* Post-Redirect-Get-Pattern
+# (Domain) Models #
+* Models und andere Domain-Klassen nach SRP fein strukturieren
+* Alle Business Rules etc. in Models/Domain ablegen
+* Bei hoher Komplexität Command-Models verwenden
 
 !SLIDE bullets incremental
-# Cookies #
-* Auf dem Client gespeichert
-* Mässig sicher (manipulierbar, aber nur mit Aufwand)
-* Zeitliche Begrenzung (Session oder definiert)
-* Geeignet für alles, was nicht Ablauf-relevant ist
-* Nur für kleine Datenmengen geeignet, da bei jedem Request übermittelt
+# View Models #
+* Domänenobjekte enthalten selten alle Informationen, welche die View benötigt
+* ViewModels erstellen, welche die Schnittstelle zwischen Controller und View bilden
 
 !SLIDE bullets incremental
-# Session State #
-* Server-Side Datenablage
-* Selektion der Session normalerweise über ein Cookie
-* Heikel in Load-Balancing-Szenarien (erfordert Sticky Session oder DB-basierte Session)
-
-!SLIDE bullets incremental
-# Datenbank #
-* Applikations-spezifisch
-* Normalerweise nur für bestimmte, fachlich identifizierbare Sachen geeignet
-
-!SLIDE bullets incremental
-# Was wann verwenden? #
-* Über Sessions hinweg speichern: Datenbank
-* (unwichtige) Einstellungen: Cookie
-* Login-Status, Session-Key u.ä.: Cookie (verschlüsselt)
-* Alles, was Navigations-relevant ist: Url
-* Datenübermittlung vom Browser: POST
+# Command Models #
+* Die eintreffenden Daten werden in einer speziellen Model-Klasse gesammelt
+* Die Abhängigkeiten für die Ausführung dieser Aufgabe sind im Command Model, nicht im Controller
+* Das Command Model validiert selber, ob es gültig ist
+* Wenn ja, löst der Controller die Ausführung des Command Models aus
 
 !SLIDE center
-# # Statelessness #
+# MVC Design #
 ![](img/questions.jpg)
