@@ -1,5 +1,5 @@
 !SLIDE 
-# ASP.NET MVC Design #
+# ASP.NET MVC Elemente #
 
 !SLIDE bullets incremental
 # Views ohne fachliche Logik #
@@ -10,12 +10,12 @@
 !SLIDE bullets incremental
 # Views typisieren #
 * Views können ein typisiertes Model entgegennehmen
-* Immer ViewPage<ModelType> verwenden
+* Immer typisierte ViewPage&lt;ModelType&gt; verwenden
 * Das ermöglicht Intellisense und Compiler-Checks
 
 !SLIDE bullets incremental
 # Views: HTML Helper verwenden #
-* Html.LabelFor, Html.EditorFor, Html.ValidationMessageFor etc. helfen, DRY zu bleiben
+* Html.LabelFor, Html.ValidationMessageFor etc. helfen, DRY zu bleiben
 * Sauberes, einfaches HTML verwenden
 * Für wiederkehrende Aufgaben eigene HtmlHelper erstellen
 * Bedingungen etc. in HtmlHelper verpacken
@@ -38,7 +38,6 @@
 # (Domain) Models #
 * Models und andere Domain-Klassen nach SRP fein strukturieren
 * Alle Business Rules etc. in Models/Domain ablegen
-* Bei hoher Komplexität Command-Models verwenden
 
 !SLIDE bullets incremental
 # View Models #
@@ -49,7 +48,7 @@
 # Command Models #
 * Die eintreffenden Daten werden in einer speziellen Model-Klasse gesammelt
 * Die Abhängigkeiten für die Ausführung dieser Aufgabe sind im Command Model, nicht im Controller
-* Das Command Model validiert selber, ob es gültig ist
+* Das Command Model validiert, ob es gültig ist
 * Wenn ja, löst der Controller die Ausführung des Command Models aus
 
 !SLIDE bullets incremental

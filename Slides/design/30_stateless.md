@@ -70,5 +70,5 @@
 * Datenübermittlung vom Browser: POST
 
 !SLIDE center
-# # Statelessness #
+# Statelessness #
 ![](img/questions.jpg)
