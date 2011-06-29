@@ -52,6 +52,11 @@
 * Das Command Model validiert selber, ob es gültig ist
 * Wenn ja, löst der Controller die Ausführung des Command Models aus
 
+!SLIDE bullets incremental
+# Das passt nicht zu MVC #
+* Statische Zugriffe auf Abhängigkeiten
+* Controls mit Postback-Logik
+
 !SLIDE center
 # MVC Design #
 ![](img/questions.jpg)

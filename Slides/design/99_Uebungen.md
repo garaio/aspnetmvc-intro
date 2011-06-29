@@ -1,6 +1,6 @@
 !SLIDE bullets
-# Übungen Block 1 #
+# Übungen Block 2 #
 
-* bis 10:30
+* bis 16:45 (Pause 15:00-15:15)
 * Arbeit zu zweit ist sinnvoll
 * bei Fragen bitte einfach fragen
